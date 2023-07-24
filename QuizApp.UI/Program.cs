@@ -6,7 +6,7 @@ using System.Text.Json;
 var path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"QuizQuestions.json");
 
 var text = File.ReadAllText(path);
-var quiz = JsonSerializer.Deserialize<List<Quiz>>(text);
+var quiz = JsonSerializer.Deserialize<List<QuizModel>>(text);
 
 int quizNum = 1;
 int quizCorrectAnswers = 0;
@@ -14,7 +14,8 @@ int quizCorrectAnswers = 0;
 foreach (var item in quiz)
 {
     Console.WriteLine($"Spørgsmål {quizNum++} / {quiz.Count}");
-    Console.WriteLine(item.Question);
+    Console.WriteLine();
+    Console.WriteLine($"{item.Question}");
 
 
     int num = 1;
@@ -23,7 +24,8 @@ foreach (var item in quiz)
         Console.WriteLine($"{num++}. {item2}");
     }
 
-    Console.Write("Indtast svar: ");
+    Console.WriteLine();
+    Console.Write("Indtast tal eller svar: ");
     string answer = Console.ReadLine().ToLower();
     var success = int.TryParse(answer, out int intAnswer);
 
@@ -31,14 +33,18 @@ foreach (var item in quiz)
     Console.WriteLine();
     if (answer == item.Answer.ToLower() || true == success && item.Answer == item.Options[intAnswer-1])
     {
-        Console.WriteLine("Rigtigt!");
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("Korrekt!");
+        Console.ResetColor();
         quizCorrectAnswers++;
     }
 
     else
     {
+        Console.ForegroundColor= ConsoleColor.Red;
         Console.WriteLine("Forkert :(");
-        Console.Write("Det rigtige svar er: ");
+        Console.ResetColor();
+        Console.Write("Det rigtige svar var: ");
         Console.WriteLine(item.Answer);
     }
 

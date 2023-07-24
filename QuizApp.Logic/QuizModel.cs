@@ -2,7 +2,7 @@
 
 namespace QuizApp.Logic
 {
-    public class Quiz
+    public class QuizModel
     {
         [JsonPropertyName("question")]
         public string Question { get; set; }
