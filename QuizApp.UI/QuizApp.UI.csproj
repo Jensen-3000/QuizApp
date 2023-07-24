@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\QuizApp.Logic\QuizApp.Logic.csproj" />
+  </ItemGroup>
+
 </Project>

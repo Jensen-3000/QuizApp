@@ -3,13 +3,17 @@
     "question": "Hvor meget vand bruger den gennemsnitlige dansker om dagen?",
     "options": [ "105 liter", "505 liter", "55 liter" ],
     "answer": "105 liter",
-    "fact": "I gennemsnit bruger hver dansker 105 liter vand om dagen. Forbruget er faldet de senere år. For 20 år siden brugte hver dansker i gennemsnit cirka 200 liter vand i døgnet, viser data fra brancheorganisationen Danva. (Foto: Liselotte Sabroe/Ritzau Scanpix)"
+    "fact": [
+      "I gennemsnit bruger hver dansker 105 liter vand om dagen. Forbruget er faldet de senere år. For 20 år siden brugte hver dansker i gennemsnit cirka 200 liter vand i døgnet, viser data fra brancheorganisationen Danva. (Foto: Liselotte Sabroe/Ritzau Scanpix)"
+    ]
   },
   {
     "question": "Hvor gammelt er vandet, vi tapper fra hanen?",
     "options": [ "1 år", "20 år", "10 år" ],
     "answer": "20 år",
-    "fact": "Vores drikkevand er produceret fra grundvand. Det tager mange år, før regnvand er sivet ned til grundvandet og bliver hentet op igen for at blive til drikkevand. Typisk er det ifølge Danmarks Naturfredningsforening 20 år, hvilket betyder, at vandet i hanen faktisk faldt ned som regn for 20 år siden."
+    "fact": [
+      "Vores drikkevand er produceret fra grundvand. Det tager mange år, før regnvand er sivet ned til grundvandet og bliver hentet op igen for at blive til drikkevand. Typisk er det ifølge Danmarks Naturfredningsforening 20 år, hvilket betyder, at vandet i hanen faktisk faldt ned som regn for 20 år siden."
+    ]
   },
   {
     "question": "Hvor mange liter vand bruger vi typisk på et brusebad på 5 minutter?",
@@ -24,7 +28,9 @@
     "question": "Hvor meget vand løber ud af haveslangen på et minut?",
     "options": [ "1 liter", "5 liter", "12 liter" ],
     "answer": "12 liter",
-    "fact": "Haveslangen bruger 12 liter vand pr. minut. Undgå så vidt muligt vanding om dagen, fordi vandet fordamper, før det når ned til planternes rødder. Det er bedre at vande om aftenen, når solen ikke er fremme. (Henning Bagger/Ritzau Scanpix)"
+    "fact": [
+      "Haveslangen bruger 12 liter vand pr. minut. Undgå så vidt muligt vanding om dagen, fordi vandet fordamper, før det når ned til planternes rødder. Det er bedre at vande om aftenen, når solen ikke er fremme. (Henning Bagger/Ritzau Scanpix)"
+    ]
   },
   {
     "question": "Hvad bruger mest vand i hjemmet?",
@@ -44,6 +50,8 @@
     "question": "Hvor meget vand indeholder de store havepools?",
     "options": [ "40.000-50.000 liter", "5.000-10.000", "60-120 liter" ],
     "answer": "40.000-50.000 liter",
-    "fact": "Store havepools bruger rigtig meget vand. Der findes bassiner med en kapacitet på mellem 40.000 og 50.000 liter. De største bassiner bruger ifølge Bolius lige så meget vand, som en enkelt dansker bruger på et halvt år. Man sparer derfor på vandet ved at bruge et mindre badebassin eller helt flytte badeturen til stranden eller havnebassinet. (Foto: Keld Navntoft/Ritzau Scanpix)"
+    "fact": [
+      "Store havepools bruger rigtig meget vand. Der findes bassiner med en kapacitet på mellem 40.000 og 50.000 liter. De største bassiner bruger ifølge Bolius lige så meget vand, som en enkelt dansker bruger på et halvt år. Man sparer derfor på vandet ved at bruge et mindre badebassin eller helt flytte badeturen til stranden eller havnebassinet. (Foto: Keld Navntoft/Ritzau Scanpix)"
+    ]
   }
 ]
