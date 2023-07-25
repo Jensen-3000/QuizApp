@@ -10,12 +10,11 @@ while (true)
 
 void RunQuiz(List<QuizModel> quiz)
 {
-    int quizNum = 1;
     int quizCorrectAnswers = 0;
 
     foreach (var currentQuestion in quiz)
     {
-        DisplayQuestions(currentQuestion, quiz, quizNum);
+        DisplayQuestions(currentQuestion, quiz);
 
         string answer = Console.ReadLine().ToLower();
 
@@ -62,10 +61,10 @@ bool IsAnswerCorrect(QuizModel question, string userAnswer)
     return false;
 }
 
-void DisplayQuestions(QuizModel questions, List<QuizModel> quiz, int quizNum)
+void DisplayQuestions(QuizModel questions, List<QuizModel> quiz)
 {
-
-    Console.WriteLine($"Spørgsmål {quizNum++} / {quiz.Count}");
+    int questionNum = 1;
+    Console.WriteLine($"Spørgsmål {questionNum++} / {quiz.Count}");
     Console.WriteLine();
     Console.WriteLine($"{questions.Question}");
 
