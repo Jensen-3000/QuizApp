@@ -7,6 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Update="QuizAboutProgramming.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
     <None Update="QuizQuestions.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
