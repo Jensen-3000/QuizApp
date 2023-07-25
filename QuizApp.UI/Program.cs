@@ -2,54 +2,51 @@
 using System.Text.Json;
 
 
-var (quiz, errorMessage) = ReadQuizFile();
-
-if (!string.IsNullOrEmpty(errorMessage))
+while (true)
 {
-    Console.WriteLine(errorMessage);
-    return;
-}
+    ChooseQuiz();
+};
 
 
-int quizNum = 1;
-int quizCorrectAnswers = 0;
-
-foreach (var currentQuestion in quiz)
+void RunQuiz(List<QuizModel> quiz)
 {
-    DisplayQuestions(currentQuestion);
+    int quizNum = 1;
+    int quizCorrectAnswers = 0;
 
-    string answer = Console.ReadLine().ToLower();
-
-    Console.WriteLine();
-
-    if (IsAnswerCorrect(currentQuestion, answer))
+    foreach (var currentQuestion in quiz)
     {
-        Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine("Korrekt!");
-        Console.ResetColor();
-        quizCorrectAnswers++;
-    }
-    else
-    {
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine("Forkert :(");
-        Console.ResetColor();
-        Console.Write("Det rigtige svar var: ");
-        Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine(currentQuestion.Answer);
-        Console.ResetColor();
+        DisplayQuestions(currentQuestion, quiz, quizNum);
+
+        string answer = Console.ReadLine().ToLower();
+
+        Console.WriteLine();
+
+        if (IsAnswerCorrect(currentQuestion, answer))
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Korrekt!");
+            Console.ResetColor();
+            quizCorrectAnswers++;
+        }
+        else
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Forkert :(");
+            Console.ResetColor();
+            Console.Write("Det rigtige svar var: ");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(currentQuestion.Answer);
+            Console.ResetColor();
+        }
+
+        Console.WriteLine();
+        DisplayFact(currentQuestion.Fact);
+        ClickToContinue();
     }
 
-    Console.WriteLine();
-    DisplayFact(currentQuestion.Fact);
-
-    Console.WriteLine("\n\nTryk på en vilkårlig tast for at fortsætte...");
-    Console.ReadKey();
-    Console.Clear();
+    Console.WriteLine($"Du fik {quizCorrectAnswers} ud af {quiz.Count} rigtige!");
+    ClickToContinue();
 }
-
-Console.WriteLine($"Du fik {quizCorrectAnswers} ud af {quiz.Count} rigtige!");
-
 
 bool IsAnswerCorrect(QuizModel question, string userAnswer)
 {
@@ -65,8 +62,9 @@ bool IsAnswerCorrect(QuizModel question, string userAnswer)
     return false;
 }
 
-void DisplayQuestions(QuizModel questions)
+void DisplayQuestions(QuizModel questions, List<QuizModel> quiz, int quizNum)
 {
+
     Console.WriteLine($"Spørgsmål {quizNum++} / {quiz.Count}");
     Console.WriteLine();
     Console.WriteLine($"{questions.Question}");
@@ -90,11 +88,11 @@ void DisplayFact(string[] facts)
     }
 }
 
-(List<QuizModel>, string) ReadQuizFile()
+(List<QuizModel>, string) ReadQuizFile(string filePath)
 {
     try
     {
-        var text = File.ReadAllText("QuizQuestions.json");
+        var text = File.ReadAllText(filePath);
         var quizContainer = JsonSerializer.Deserialize<QuizCollection>(text);
         return (quizContainer.Questions, null);
     }
@@ -102,4 +100,50 @@ void DisplayFact(string[] facts)
     {
         return (null, $"Der skete en fejl: {ex.Message}");
     }
+}
+
+void ChooseQuiz()
+{
+    Console.WriteLine("Vælg en Quiz\n");
+
+    var availableQuizzes = Directory.GetFiles("Quizzes", "*.json");
+    if (availableQuizzes.Length <= 0)
+    {
+
+        Console.WriteLine("Der blev ikke fundet nogle Quiz'.");
+        return;
+    }
+
+    int availableQuizzesNum = 1;
+
+    foreach (var file in availableQuizzes)
+    {
+        Console.WriteLine($"{availableQuizzesNum++}. {Path.GetFileNameWithoutExtension(file)}");
+    }
+
+    if (int.TryParse(Console.ReadLine(), out int quizChoice) &&
+        quizChoice > 0 && quizChoice <= availableQuizzes.Length)
+    {
+        var selectedQuizPath = availableQuizzes[quizChoice - 1];
+        var (quizQuestions, errorMessage) = ReadQuizFile(selectedQuizPath);
+
+        if (!string.IsNullOrEmpty(errorMessage))
+        {
+            Console.WriteLine(errorMessage);
+            return;
+        }
+        Console.Clear();
+        RunQuiz(quizQuestions);
+    }
+    else
+    {
+        Console.WriteLine("Prøv igen...");
+    }
+}
+
+void ClickToContinue()
+{
+    Console.WriteLine("\n\nTryk på en vilkårlig tast for at fortsætte...");
+    Console.ReadKey();
+    Console.Clear();
 }
